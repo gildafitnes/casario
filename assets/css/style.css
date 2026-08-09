@@ -11,10 +11,21 @@
   font-display: swap;
 }
 
+/* La "cursiva" del proyecto no es la italic real de Montserrat (11,3°):
+   son los mismos contornos rectos inclinados 8,75°, como el falso italic
+   de Photoshop. Estos dos archivos se generaron cortando los contornos. */
 @font-face {
   font-family: "Montserrat";
-  src: url("../fonts/Montserrat-LightItalic.ttf") format("truetype");
+  src: url("../fonts/Montserrat-LightOblique.ttf") format("truetype");
   font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-ExtraLightOblique.ttf") format("truetype");
+  font-weight: 200;
   font-style: italic;
   font-display: swap;
 }
@@ -93,14 +104,13 @@ body {
 .logo-word {
   fill: currentColor;
   font-family: var(--font);
-  font-weight: 300;
+  font-weight: 200;
   font-style: italic;
   font-size: 48px;
 }
 
 /* punto que recorre la elipse */
 .orbit-dot { fill: currentColor; }
-.orbit-dot-still { fill: currentColor; display: none; }
 
 /* selector de idioma, bajo el extremo derecho de la elipse */
 .lang {
@@ -399,6 +409,4 @@ a:focus-visible {
 
 @media (prefers-reduced-motion: reduce) {
   .blob { animation: none !important; }
-  .orbit-dot { display: none; }
-  .orbit-dot-still { display: block; }
 }
