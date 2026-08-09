@@ -1,0 +1,420 @@
+/* ---------------------------------------------------------
+   Casa Río — hoja de estilos única
+   Verde: #006600 · Tipografía: Montserrat Light
+   --------------------------------------------------------- */
+
+/* Fuente local de respaldo (por si Google Fonts no carga) */
+@font-face {
+  font-family: "Montserrat Local";
+  src: url("../fonts/Montserrat-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --green: #006600;
+  --green-soft: #2f8a3f;
+  --paper: #ffffff;
+
+  --yellow: #ffd600;
+  --magenta: #ff70ff;
+  --cyan: #00ffff;
+  --lime: #a5ff5f;
+
+  --measure: 44rem;              /* ancho máximo del texto */
+  --gap-block: clamp(6rem, 15vw, 11rem);
+
+  --font: "Montserrat", "Montserrat Local", "Helvetica Neue", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--green);
+  font-family: var(--font);
+  font-weight: 300;
+  font-size: 100%;
+  line-height: 1.45;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ---------------------------------------------------------
+   Logo + cabecera
+   --------------------------------------------------------- */
+
+.site-head {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: clamp(1rem, 3vw, 2rem);
+}
+
+.logo {
+  display: block;
+  width: clamp(150px, 34vw, 210px);
+  color: var(--green);
+  text-decoration: none;
+  line-height: 0;
+}
+
+.logo svg { width: 100%; height: auto; overflow: visible; }
+
+.logo .logo-ring {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ring-breathe 9s ease-in-out infinite;
+}
+
+.logo .logo-ring--ghost {
+  opacity: .45;
+  animation: ring-breathe-2 13s ease-in-out infinite;
+}
+
+.logo .logo-word {
+  fill: currentColor;
+  font-family: var(--font);
+  font-weight: 300;
+  font-style: italic;
+  font-size: 56px;
+  letter-spacing: .01em;
+}
+
+.logo:hover .logo-ring { animation-duration: 4.5s; }
+
+@keyframes ring-breathe {
+  0%   { transform: scale(1) rotate(0deg); }
+  50%  { transform: scale(1.025, .975) rotate(.6deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+@keyframes ring-breathe-2 {
+  0%   { transform: scale(1.01, .99) rotate(-.5deg); }
+  50%  { transform: scale(.985, 1.02) rotate(.4deg); }
+  100% { transform: scale(1.01, .99) rotate(-.5deg); }
+}
+
+/* ---------------------------------------------------------
+   Enlaces
+   --------------------------------------------------------- */
+
+a { color: inherit; }
+
+a.plain,
+.jump a,
+.note a,
+.lead a,
+.body a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: .06em;
+  transition: opacity .25s ease;
+}
+
+a.plain:hover,
+.jump a:hover,
+.note a:hover,
+.lead a:hover,
+.body a:hover { opacity: .55; }
+
+a:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* subrayado decorativo (no es enlace) */
+.u {
+  border-bottom: 1px solid currentColor;
+  padding-bottom: .06em;
+}
+
+/* ---------------------------------------------------------
+   Portada
+   --------------------------------------------------------- */
+
+.home { padding-bottom: clamp(4rem, 10vw, 7rem); }
+
+.block {
+  position: relative;
+  margin-top: var(--gap-block);
+}
+.block:first-of-type { margin-top: clamp(2.5rem, 6vw, 4rem); }
+
+.block--right { text-align: right; }
+
+.lead {
+  position: relative;
+  z-index: 2;
+  margin: 0 0 1.6em;
+  font-size: clamp(1.15rem, 4.2vw, 1.5rem);
+  line-height: 1.35;
+}
+.lead:last-child { margin-bottom: 0; }
+
+.lead--italic { font-style: italic; }
+
+.note {
+  position: relative;
+  z-index: 2;
+  margin: .9rem 0 0;
+  font-size: clamp(.66rem, 2vw, .78rem);
+  font-style: italic;
+  letter-spacing: .01em;
+}
+.note--right { text-align: right; padding-right: 8%; }
+.note--left  { text-align: left; }
+
+.donate {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  margin-top: var(--gap-block);
+  font-size: clamp(1.15rem, 4.2vw, 1.5rem);
+  font-style: italic;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color .3s ease, opacity .3s ease;
+}
+.donate:hover { border-color: currentColor; }
+
+/* "raising funds" — círculo dibujado alrededor del enlace */
+.lead a.circled,
+.lead a.circled:hover { border-bottom: 0; }
+
+.circled {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  text-decoration: none;
+  color: inherit;
+  padding: 0 .18em;
+}
+.circled .circled-ring {
+  position: absolute;
+  left: -7%;
+  top: 50%;
+  width: 114%;
+  height: 128%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  overflow: visible;
+}
+.circled .circled-ring ellipse {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.1;
+  vector-effect: non-scaling-stroke;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ring-breathe 6.5s ease-in-out infinite;
+}
+.circled:hover .circled-ring ellipse { animation-duration: 3s; }
+
+/* ---------------------------------------------------------
+   Blobs (gaussiano + latido casi imperceptible)
+   --------------------------------------------------------- */
+
+.blob {
+  position: absolute;
+  z-index: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  will-change: transform;
+  animation: pulse 11s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%   { transform: translate(-50%, -50%) scale(1); }
+  50%  { transform: translate(-50%, -50%) scale(1.06); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+.blob--yellow {
+  left: 69%; top: 62%;
+  width: clamp(340px, 78vw, 620px);
+  aspect-ratio: 1;
+  background: radial-gradient(circle closest-side,
+              var(--yellow) 0%, rgba(255, 214, 0, .55) 42%, rgba(255, 214, 0, 0) 72%);
+  filter: blur(28px);
+  transform: translate(-50%, -50%);
+  animation-duration: 12s;
+}
+
+.blob--magenta {
+  left: 28%; top: calc(100% + 40px);
+  width: clamp(280px, 62vw, 470px);
+  aspect-ratio: 1;
+  background: radial-gradient(circle closest-side,
+              var(--magenta) 0%, rgba(255, 112, 255, .5) 40%, rgba(255, 112, 255, 0) 70%);
+  filter: blur(26px);
+  transform: translate(-50%, -50%);
+  animation-duration: 14s;
+  animation-delay: -3s;
+}
+
+.blob--cyan {
+  left: 69%; top: calc(100% + 25px);
+  width: clamp(230px, 52vw, 390px);
+  aspect-ratio: 1;
+  background: radial-gradient(circle closest-side,
+              var(--cyan) 0%, var(--cyan) 34%, rgba(0, 255, 255, .45) 55%, rgba(0, 255, 255, 0) 76%);
+  filter: blur(22px);
+  transform: translate(-50%, -50%);
+  animation-duration: 10s;
+  animation-delay: -6s;
+}
+
+.blob--lime {
+  left: 27%; top: calc(100% + 230px);
+  width: clamp(260px, 58vw, 430px);
+  aspect-ratio: 1;
+  background: radial-gradient(circle closest-side,
+              var(--lime) 0%, rgba(165, 255, 95, .5) 42%, rgba(165, 255, 95, 0) 72%);
+  filter: blur(26px);
+  transform: translate(-50%, -50%);
+  animation-duration: 13s;
+  animation-delay: -2s;
+}
+
+/* ---------------------------------------------------------
+   Páginas interiores
+   --------------------------------------------------------- */
+
+.page {
+  padding-top: clamp(2rem, 6vw, 3.5rem);
+  padding-bottom: clamp(4rem, 9vw, 6rem);
+  font-style: italic;
+}
+
+.page h1 {
+  margin: 0 0 1.8rem;
+  font-weight: 300;
+  font-style: normal;
+  font-size: clamp(1.5rem, 5.6vw, 2.05rem);
+  line-height: 1.15;
+  letter-spacing: -.01em;
+}
+
+.page h1.h1--italic { font-style: italic; }
+
+.page h2 {
+  margin: 2.6rem 0 1.1rem;
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(1.05rem, 3.6vw, 1.25rem);
+  line-height: 1.25;
+}
+
+.page h3 {
+  margin: 2rem 0 1rem;
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(.98rem, 3.2vw, 1.1rem);
+}
+
+.page p {
+  margin: 0 0 1.15em;
+  font-size: clamp(.92rem, 3vw, 1.02rem);
+  line-height: 1.5;
+}
+
+.page p.tight { margin-bottom: .25em; }
+
+.page .lead-in {
+  font-size: clamp(.98rem, 3.2vw, 1.1rem);
+  margin-bottom: 1.6em;
+}
+
+/* enlaces tipo [Ver más →] alineados a la derecha */
+.jump {
+  margin: 1.6rem 0 2.4rem;
+  text-align: right;
+  font-size: clamp(.9rem, 2.9vw, 1rem);
+}
+.jump a { display: inline-block; }
+
+.milestones {
+  list-style: none;
+  margin: 0 0 1.6em;
+  padding: 0;
+}
+.milestones li {
+  margin: 0 0 .85em;
+  font-size: clamp(.92rem, 3vw, 1.02rem);
+}
+
+.rule {
+  border: 0;
+  border-top: 1px solid currentColor;
+  opacity: .25;
+  margin: 2.6rem 0;
+}
+
+/* Fuentes / referencias */
+.sources { margin-top: 3rem; }
+.sources h2 { margin-top: 0; }
+.source { margin-bottom: 2.2rem; }
+.source .ref-title {
+  margin-bottom: .6em;
+  font-style: italic;
+}
+.source .ref-link {
+  display: inline-block;
+  max-width: 100%;
+  word-break: break-word;
+  font-size: clamp(.85rem, 2.7vw, .95rem);
+}
+
+.footnote {
+  font-size: .85em;
+  vertical-align: .35em;
+  text-decoration: none;
+  border: 0;
+}
+
+/* pie mínimo */
+.foot {
+  margin-top: 3.5rem;
+  font-size: clamp(.8rem, 2.6vw, .9rem);
+  font-style: italic;
+}
+
+/* ---------------------------------------------------------
+   Página en construcción
+   --------------------------------------------------------- */
+
+.soon {
+  min-height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ---------------------------------------------------------
+   Accesibilidad / movimiento reducido
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .blob,
+  .logo .logo-ring,
+  .circled .circled-ring ellipse {
+    animation: none !important;
+  }
+}
