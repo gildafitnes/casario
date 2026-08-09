@@ -1,20 +1,26 @@
 /* ---------------------------------------------------------
    Casa Río — hoja de estilos única
-   Verde: #006600 · Tipografía: Montserrat Light
+   Verde #006600 · Montserrat Light + Light Italic (autoalojadas)
    --------------------------------------------------------- */
 
-/* Fuente local de respaldo (por si Google Fonts no carga) */
 @font-face {
-  font-family: "Montserrat Local";
+  font-family: "Montserrat";
   src: url("../fonts/Montserrat-Light.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
 :root {
   --green: #006600;
-  --green-soft: #2f8a3f;
   --paper: #ffffff;
 
   --yellow: #ffd600;
@@ -22,10 +28,10 @@
   --cyan: #00ffff;
   --lime: #a5ff5f;
 
-  --measure: 44rem;              /* ancho máximo del texto */
+  --measure: 44rem;
   --gap-block: clamp(6rem, 15vw, 11rem);
 
-  --font: "Montserrat", "Montserrat Local", "Helvetica Neue", Arial, sans-serif;
+  --font: "Montserrat", "Helvetica Neue", Arial, sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -39,7 +45,6 @@ body {
   color: var(--green);
   font-family: var(--font);
   font-weight: 300;
-  font-size: 100%;
   line-height: 1.45;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -53,7 +58,7 @@ body {
 }
 
 /* ---------------------------------------------------------
-   Logo + cabecera
+   Cabecera: logo + selector de idioma
    --------------------------------------------------------- */
 
 .site-head {
@@ -62,9 +67,15 @@ body {
   padding-top: clamp(1rem, 3vw, 2rem);
 }
 
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
 .logo {
   display: block;
-  width: clamp(150px, 34vw, 210px);
+  width: clamp(180px, 40vw, 260px);
   color: var(--green);
   text-decoration: none;
   line-height: 0;
@@ -72,41 +83,38 @@ body {
 
 .logo svg { width: 100%; height: auto; overflow: visible; }
 
-.logo .logo-ring {
+.logo-ring {
   fill: none;
   stroke: currentColor;
-  stroke-width: 1.4;
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: ring-breathe 9s ease-in-out infinite;
+  stroke-width: 1.2;
+  vector-effect: non-scaling-stroke;
 }
 
-.logo .logo-ring--ghost {
-  opacity: .45;
-  animation: ring-breathe-2 13s ease-in-out infinite;
-}
-
-.logo .logo-word {
+.logo-word {
   fill: currentColor;
   font-family: var(--font);
   font-weight: 300;
   font-style: italic;
-  font-size: 56px;
-  letter-spacing: .01em;
+  font-size: 48px;
 }
 
-.logo:hover .logo-ring { animation-duration: 4.5s; }
+/* punto que recorre la elipse */
+.orbit-dot { fill: currentColor; }
+.orbit-dot-still { fill: currentColor; display: none; }
 
-@keyframes ring-breathe {
-  0%   { transform: scale(1) rotate(0deg); }
-  50%  { transform: scale(1.025, .975) rotate(.6deg); }
-  100% { transform: scale(1) rotate(0deg); }
+/* selector de idioma, bajo el extremo derecho de la elipse */
+.lang {
+  margin-top: -.4em;
+  padding-right: .1em;
+  font-size: clamp(.62rem, 1.9vw, .74rem);
+  font-style: italic;
+  letter-spacing: .04em;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color .25s ease;
 }
-@keyframes ring-breathe-2 {
-  0%   { transform: scale(1.01, .99) rotate(-.5deg); }
-  50%  { transform: scale(.985, 1.02) rotate(.4deg); }
-  100% { transform: scale(1.01, .99) rotate(-.5deg); }
-}
+.lang:hover { border-bottom-color: currentColor; }
 
 /* ---------------------------------------------------------
    Enlaces
@@ -118,7 +126,8 @@ a.plain,
 .jump a,
 .note a,
 .lead a,
-.body a {
+.page p a,
+.milestones a {
   color: inherit;
   text-decoration: none;
   border-bottom: 1px solid currentColor;
@@ -130,7 +139,7 @@ a.plain:hover,
 .jump a:hover,
 .note a:hover,
 .lead a:hover,
-.body a:hover { opacity: .55; }
+.page p a:hover { opacity: .55; }
 
 a:focus-visible {
   outline: 2px solid var(--green);
@@ -180,22 +189,9 @@ a:focus-visible {
 .note--right { text-align: right; padding-right: 8%; }
 .note--left  { text-align: left; }
 
-.donate {
-  position: relative;
-  z-index: 2;
-  display: inline-block;
-  margin-top: var(--gap-block);
-  font-size: clamp(1.15rem, 4.2vw, 1.5rem);
-  font-style: italic;
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color .3s ease, opacity .3s ease;
-}
-.donate:hover { border-color: currentColor; }
-
-/* "raising funds" — círculo dibujado alrededor del enlace */
-.lead a.circled,
-.lead a.circled:hover { border-bottom: 0; }
+/* ---------------------------------------------------------
+   Texto rodeado por una elipse (raising funds · Donate)
+   --------------------------------------------------------- */
 
 .circled {
   position: relative;
@@ -204,27 +200,38 @@ a:focus-visible {
   text-decoration: none;
   color: inherit;
   padding: 0 .18em;
+  line-height: 1.35;
 }
-.circled .circled-ring {
+
+.lead a.circled,
+.lead a.circled:hover { border-bottom: 0; }
+
+.circled-ring {
   position: absolute;
-  left: -7%;
+  left: -3%;
   top: 50%;
-  width: 114%;
-  height: 128%;
+  width: 106%;
+  height: 118%;
   transform: translateY(-50%);
   pointer-events: none;
   overflow: visible;
 }
-.circled .circled-ring ellipse {
+
+.circled-ring ellipse {
   fill: none;
   stroke: currentColor;
   stroke-width: 1.1;
   vector-effect: non-scaling-stroke;
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: ring-breathe 6.5s ease-in-out infinite;
 }
-.circled:hover .circled-ring ellipse { animation-duration: 3s; }
+
+.donate {
+  position: relative;
+  z-index: 2;
+  margin-top: var(--gap-block);
+  margin-left: .2em;
+  font-size: clamp(1.15rem, 4.2vw, 1.5rem);
+  font-style: italic;
+}
 
 /* ---------------------------------------------------------
    Blobs (gaussiano + latido casi imperceptible)
@@ -337,12 +344,6 @@ a:focus-visible {
 
 .page p.tight { margin-bottom: .25em; }
 
-.page .lead-in {
-  font-size: clamp(.98rem, 3.2vw, 1.1rem);
-  margin-bottom: 1.6em;
-}
-
-/* enlaces tipo [Ver más →] alineados a la derecha */
 .jump {
   margin: 1.6rem 0 2.4rem;
   text-align: right;
@@ -367,14 +368,10 @@ a:focus-visible {
   margin: 2.6rem 0;
 }
 
-/* Fuentes / referencias */
 .sources { margin-top: 3rem; }
 .sources h2 { margin-top: 0; }
 .source { margin-bottom: 2.2rem; }
-.source .ref-title {
-  margin-bottom: .6em;
-  font-style: italic;
-}
+.source .ref-title { margin-bottom: .6em; }
 .source .ref-link {
   display: inline-block;
   max-width: 100%;
@@ -389,17 +386,6 @@ a:focus-visible {
   border: 0;
 }
 
-/* pie mínimo */
-.foot {
-  margin-top: 3.5rem;
-  font-size: clamp(.8rem, 2.6vw, .9rem);
-  font-style: italic;
-}
-
-/* ---------------------------------------------------------
-   Página en construcción
-   --------------------------------------------------------- */
-
 .soon {
   min-height: 40vh;
   display: flex;
@@ -408,13 +394,11 @@ a:focus-visible {
 }
 
 /* ---------------------------------------------------------
-   Accesibilidad / movimiento reducido
+   Movimiento reducido
    --------------------------------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
-  .blob,
-  .logo .logo-ring,
-  .circled .circled-ring ellipse {
-    animation: none !important;
-  }
+  .blob { animation: none !important; }
+  .orbit-dot { display: none; }
+  .orbit-dot-still { display: block; }
 }

@@ -5,9 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>1.2 — Create the association — Casa Río</title>
 <meta name="description" content="Legal structure and costs: establishing Casa Río as a non-profit association.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -15,13 +12,21 @@
 <div class="wrap">
 
   <header class="site-head">
-    <a class="logo" href="index.html" aria-label="Casa Río — home">
-      <svg viewBox="0 0 300 92" role="img" aria-hidden="true">
-        <ellipse class="logo-ring logo-ring--ghost" cx="150" cy="46" rx="146" ry="42"/>
-        <ellipse class="logo-ring" cx="150" cy="46" rx="146" ry="42"/>
-        <text class="logo-word" x="150" y="65" text-anchor="middle">Casa Río</text>
-      </svg>
-    </a>
+    <div class="brand">
+      <a class="logo" href="index.html" aria-label="Casa Río">
+        <svg viewBox="0 0 300 106" aria-hidden="true">
+          <ellipse id="ring-logo" class="logo-ring" cx="150" cy="53" rx="146" ry="47"/>
+          <text class="logo-word" x="150" y="72" text-anchor="middle">Casa Río</text>
+          <circle class="orbit-dot" r="4.7">
+            <animateMotion dur="24s" repeatCount="indefinite">
+              <mpath href="#ring-logo" xlink:href="#ring-logo"/>
+            </animateMotion>
+          </circle>
+          <circle class="orbit-dot-still" cx="150" cy="100" r="4.7"/>
+        </svg>
+      </a>
+      <a class="lang" href="es/association.html" hreflang="es" lang="es">ESP</a>
+    </div>
   </header>
 
   <main class="page">

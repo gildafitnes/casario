@@ -5,9 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Casa Río</title>
 <meta name="description" content="Casa Río is a citizen-led, non-profit initiative working to reclaim spaces in the city.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -15,13 +12,21 @@
 <div class="wrap">
 
   <header class="site-head">
-    <a class="logo" href="index.html" aria-label="Casa Río — home">
-      <svg viewBox="0 0 300 92" role="img" aria-hidden="true">
-        <ellipse class="logo-ring logo-ring--ghost" cx="150" cy="46" rx="146" ry="42"/>
-        <ellipse class="logo-ring" cx="150" cy="46" rx="146" ry="42"/>
-        <text class="logo-word" x="150" y="65" text-anchor="middle">Casa Río</text>
-      </svg>
-    </a>
+    <div class="brand">
+      <a class="logo" href="index.html" aria-label="Casa Río">
+        <svg viewBox="0 0 300 106" aria-hidden="true">
+          <ellipse id="ring-logo" class="logo-ring" cx="150" cy="53" rx="146" ry="47"/>
+          <text class="logo-word" x="150" y="72" text-anchor="middle">Casa Río</text>
+          <circle class="orbit-dot" r="4.7">
+            <animateMotion dur="24s" repeatCount="indefinite">
+              <mpath href="#ring-logo" xlink:href="#ring-logo"/>
+            </animateMotion>
+          </circle>
+          <circle class="orbit-dot-still" cx="150" cy="100" r="4.7"/>
+        </svg>
+      </a>
+      <a class="lang" href="es/index.html" hreflang="es" lang="es">ESP</a>
+    </div>
   </header>
 
   <main class="home">
@@ -37,7 +42,7 @@
     <!-- 02 -->
     <section class="block block--right">
       <div class="blob blob--magenta"></div>
-      <p class="lead">We are currently in <a href="phases.html">the first phase</a> of the project, <a class="circled" href="donations.html">raising funds<svg class="circled-ring" viewBox="0 0 200 60" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="100" cy="30" rx="97" ry="26"/></svg></a> to acquire a permanent space and return it to the city for culture, community and collective use.</p>
+      <p class="lead">We are currently in <a href="phases.html">the first phase</a> of the project, <a class="circled" href="donations.html">raising funds<svg class="circled-ring" viewBox="0 0 450 100" preserveAspectRatio="none" aria-hidden="true"><ellipse id="ring-raising" cx="225" cy="50" rx="225" ry="50"/><circle class="orbit-dot" r="12"><animateMotion dur="18s" repeatCount="indefinite"><mpath href="#ring-raising" xlink:href="#ring-raising"/></animateMotion></circle><circle class="orbit-dot-still" cx="225" cy="100" r="12"/></svg></a> to acquire a permanent space and return it to the city for culture, community and collective use.</p>
       <p class="note note--left"><a href="phases.html">Where does your donation go?</a></p>
     </section>
 
@@ -60,7 +65,7 @@
       <p class="lead lead--italic">A small contribution, multiplied by many people, can turn an idea into a permanent place for the city.</p>
     </section>
 
-    <a class="donate" href="donations.html">Donate to Casa Río</a>
+    <a class="donate circled" href="donations.html">Donate to Casa Río<svg class="circled-ring" viewBox="0 0 671 100" preserveAspectRatio="none" aria-hidden="true"><ellipse id="ring-donate" cx="335.5" cy="50" rx="335.5" ry="50"/><circle class="orbit-dot" r="12"><animateMotion dur="26s" repeatCount="indefinite"><mpath href="#ring-donate" xlink:href="#ring-donate"/></animateMotion></circle><circle class="orbit-dot-still" cx="335.5" cy="100" r="12"/></svg></a>
 
   </main>
 

@@ -1,31 +1,40 @@
 # Casa Río
 
-Sitio estático (HTML + CSS, sin dependencias ni build) para publicar en GitHub Pages.
+Sitio estático (HTML + CSS, sin JavaScript ni build) para publicar en GitHub Pages.
+Bilingüe: inglés en la raíz, español en `/es/`.
 
 ## Publicar en GitHub Pages
 
-1. Crea un repositorio nuevo y sube todo el contenido de esta carpeta a la raíz.
-2. En el repo: **Settings → Pages → Source: Deploy from a branch → Branch: `main` / `/ (root)`**.
-3. En un par de minutos estará en `https://<usuario>.github.io/<repo>/`.
-
-No hace falta nada más: `index.html` está en la raíz y todas las rutas son relativas.
+1. Sube todo el contenido de esta carpeta a la raíz del repositorio.
+2. **Settings → Pages → Source: Deploy from a branch → Branch: `main` / `/ (root)`**.
+3. En un par de minutos: `https://<usuario>.github.io/<repo>/`.
 
 ## Estructura
 
 ```
-index.html              portada
-why-this-matters.html   con las 6 fuentes como enlaces reales
-phases.html             las fases, con sus 5 enlaces internos
-inside.html             qué pasará dentro
-cannot-buy.html         qué pasa si no podemos comprar
-association.html        1.2 crear la asociación
-contributions.html      cómo se gestionan las contribuciones
-donations.html          PENDIENTE — página de donaciones
-newsletter.html         PENDIENTE — alta en la newsletter
-accounts.html           PENDIENTE — cuentas públicas en vivo
-assets/css/style.css    todos los estilos
-assets/fonts/           Montserrat-Light.ttf (respaldo si Google Fonts falla)
+index.html               portada (EN)
+why-this-matters.html    con las 6 fuentes enlazadas
+phases.html              las fases, con sus 5 enlaces internos
+inside.html              qué pasará dentro
+cannot-buy.html          qué pasa si no podemos comprar
+association.html         1.2 crear la asociación
+contributions.html       cómo se gestionan las aportaciones
+donations.html           PENDIENTE — donaciones
+newsletter.html          PENDIENTE — newsletter
+accounts.html            PENDIENTE — cuentas públicas
+es/                      las mismas diez páginas en español
+assets/css/style.css     todos los estilos
+assets/fonts/            Montserrat Light + Light Italic (autoalojadas)
 ```
+
+Los nombres de archivo son idénticos en los dos idiomas, así que el conmutador
+ESP/ENG siempre lleva a la misma página en el otro idioma. Si añades una página
+nueva, créala en los dos sitios con el mismo nombre y el conmutador funciona solo.
+
+## Idioma
+
+- Páginas en inglés: enlace **ESP** bajo el logo → `es/<misma-página>`
+- Páginas en español: enlace **ENG** bajo el logo → `../<misma-página>`
 
 ## Mapa de enlaces
 
@@ -33,56 +42,56 @@ Portada:
 
 | Elemento | Va a |
 |---|---|
-| `why this matters?` | `why-this-matters.html` |
-| `the first phase` | `phases.html` |
-| `raising funds` (con círculo) | `donations.html` |
-| `Where does your donation go?` | `phases.html` |
-| `What will happen inside?` | `inside.html` |
-| `Donate to Casa Río` | `donations.html` |
+| `why this matters?` / `¿por qué importa esto?` | `why-this-matters.html` |
+| `the first phase` / `la primera fase` | `phases.html` |
+| `raising funds` / `captando fondos` (con elipse) | `donations.html` |
+| `Where does your donation go?` / `¿A dónde va tu donación?` | `phases.html` |
+| `What will happen inside?` / `¿Qué pasará dentro?` | `inside.html` |
+| `Donate to Casa Río` / `Donar a Casa Río` (con elipse) | `donations.html` |
 
-Fases:
-
-| Elemento | Va a |
-|---|---|
-| `[How are contributions managed? →]` | `contributions.html` |
-| `[Legal structure and costs →]` | `association.html` |
-| `[subscribe to the newsletter →]` | `newsletter.html` |
-| `[Follow the acquisition fund →]` | `accounts.html` |
-| `[What happens if we cannot buy? →]` | `cannot-buy.html` |
-
-El logo enlaza siempre a la portada.
+Fases: contribuciones, asociación, newsletter, cuentas y "y si no podemos comprar".
+El logo enlaza siempre a la portada del idioma en el que estás.
 
 ## Animaciones
 
-Todo con CSS, sin JavaScript.
+Todo con CSS y SVG, sin JavaScript.
 
-- **Logo**: dos elipses SVG superpuestas que respiran a ritmos distintos (9 s y 13 s), con rotación y proporción ligeramente cambiantes. Se acelera al pasar el cursor.
-- **Blobs**: escala de 1 a 1.06 en ciclos de 10–14 s, cada uno con retardo distinto para que no vayan sincronizados.
-- **`raising funds`**: su elipse usa la misma animación que el logo, a 6.5 s.
+- **Punto orbital**: un círculo recorre la elipse con `<animateMotion>` siguiendo
+  el trazado real (`<mpath>`), así que va exactamente por encima de la línea.
+  Está en el logo (24 s), en *raising funds* (18 s) y en *Donate* (26 s).
+- **Blobs**: escala de 1 a 1.06 en ciclos de 10–14 s, con retardos distintos para
+  que no vayan sincronizados.
 
-Se respeta `prefers-reduced-motion`: si el sistema del visitante pide movimiento reducido, todo queda quieto.
+Con `prefers-reduced-motion` activado, el punto se queda quieto abajo del todo
+(`.orbit-dot-still`) y los blobs dejan de latir.
 
 ## Retocar cosas
 
-Casi todo está en las variables del principio de `assets/css/style.css`:
+Variables al principio de `assets/css/style.css`:
 
 ```css
---green:   #006600;   /* el verde de todo el texto */
---yellow:  #ffd600;   /* blob 1 */
---magenta: #ff70ff;   /* blob 2 */
---cyan:    #00ffff;   /* blob 3 */
---lime:    #a5ff5f;   /* blob 4 */
---measure: 44rem;     /* ancho máximo de la columna de texto */
---gap-block: clamp(6rem, 15vw, 11rem);  /* separación entre bloques de la portada */
+--green:   #006600;
+--yellow:  #ffd600;   --magenta: #ff70ff;
+--cyan:    #00ffff;   --lime:    #a5ff5f;
+--measure: 44rem;                        /* ancho de la columna de texto */
+--gap-block: clamp(6rem, 15vw, 11rem);   /* separación entre bloques */
 ```
 
-Cada blob tiene su propia regla (`.blob--yellow`, `.blob--magenta`, …) donde se ajusta
-posición (`left` / `top`), tamaño (`width`) y desenfoque (`filter: blur()`).
+**Tamaño del punto.** El del logo es `r="4.7"` dentro de un `viewBox` de 300
+unidades: equivale a los 14 px de Photoshop sobre un lienzo de 1080. Los de
+*raising funds* y *Donate* son `r="12"` porque su `viewBox` mide 100 unidades de
+alto en vez de 106. Si cambias uno, cambia los tres para que se vean iguales.
 
-Para cambiar la intensidad del latido, edita el `@keyframes pulse`: el `scale(1.06)`
-es lo único que hay que tocar.
+**Elipses de texto.** Cada una lleva un `viewBox` cuya proporción coincide con la
+caja del texto que rodea, para que el punto salga redondo y no ovalado. Si cambias
+el texto de dentro, hay que recalcular el ancho del `viewBox`:
+`ancho = (avance_del_texto_en_em + 0.36) * 1.06 / 1.593 * 100`, redondeado.
+El alto siempre es 100 y `rx` es la mitad del ancho.
+
+**Latido de los blobs.** Solo hay que tocar el `scale(1.06)` del `@keyframes pulse`.
 
 ## Tipografía
 
-Montserrat Light se carga desde Google Fonts (incluye la cursiva real). El archivo
-`Montserrat-Light.ttf` queda autoalojado como respaldo por si Google no está disponible.
+Montserrat Light y Light Italic van autoalojadas en `assets/fonts/`. No se carga
+nada de Google Fonts, así que el logo sale en cursiva real siempre, también sin
+conexión.
