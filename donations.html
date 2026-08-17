@@ -4,8 +4,257 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Support Casa Río — Casa Río</title>
-<meta name="description" content="Contribute to Casa Río and follow the project's progress and public accounts.">
+<meta name="description" content="Contribute to Casa Río and follow the progress and public accounts of the project.">
 <link rel="stylesheet" href="assets/css/style.css">
+
+<style>
+/* Donation page only. Global Casa Río typography/colour still comes from assets/css/style.css */
+
+.donation-page {
+  padding-top: clamp(1.5rem, 4vw, 2.4rem);
+}
+
+.project-progress {
+  margin-bottom: clamp(2.3rem, 6vw, 3.6rem);
+}
+
+.progress-current,
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  font-size: clamp(.76rem, 2.5vw, .95rem);
+  line-height: 1.25;
+}
+
+.progress-current {
+  margin-bottom: .35rem;
+}
+
+.progress-current span:last-child {
+  text-align: right;
+}
+
+.progress-track {
+  --progress: 5%;
+  position: relative;
+  width: 88%;
+  height: 1.35rem;
+  margin: 0 auto;
+  border: 1.25px solid var(--green);
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(0, 102, 0, .018);
+}
+
+.progress-fill {
+  position: relative;
+  display: block;
+  width: var(--progress);
+  min-width: 2.5rem;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+  background:
+    linear-gradient(
+      110deg,
+      #004c1a 0%,
+      #007d2a 18%,
+      #00a13a 34%,
+      #62d77a 48%,
+      #00b84d 61%,
+      #006e27 78%,
+      #00a83f 100%
+    );
+  background-size: 260% 100%;
+  animation: river-gradient 5.8s ease-in-out infinite;
+}
+
+.progress-fill::before,
+.progress-fill::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.progress-fill::before {
+  inset: -65% -120%;
+  background:
+    radial-gradient(circle at 20% 45%, rgba(255,255,255,.42) 0 8%, transparent 22%),
+    radial-gradient(circle at 58% 62%, rgba(151,255,173,.48) 0 9%, transparent 24%),
+    radial-gradient(circle at 84% 36%, rgba(255,255,255,.24) 0 7%, transparent 20%);
+  animation: liquid-drift 7.2s ease-in-out infinite alternate;
+}
+
+.progress-fill::after {
+  width: 48%;
+  height: 180%;
+  top: -42%;
+  left: -65%;
+  border-radius: 50%;
+  background: rgba(196, 255, 205, .35);
+  filter: blur(7px);
+  animation: liquid-glint 4.6s ease-in-out infinite;
+}
+
+@keyframes river-gradient {
+  0%   { background-position:   0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position:   0% 50%; }
+}
+
+@keyframes liquid-drift {
+  0%   { transform: translate3d(-10%, 3%, 0) scale(1); }
+  50%  { transform: translate3d(18%, -5%, 0) scale(1.08); }
+  100% { transform: translate3d(40%, 4%, 0) scale(.98); }
+}
+
+@keyframes liquid-glint {
+  0%   { transform: translateX(0) rotate(7deg); opacity: .15; }
+  45%  { opacity: .58; }
+  100% { transform: translateX(360%) rotate(7deg); opacity: .08; }
+}
+
+.progress-labels {
+  width: 88%;
+  margin: .55rem auto 0;
+}
+
+.progress-labels span:last-child {
+  text-align: right;
+}
+
+.phase-summary {
+  width: 88%;
+  margin: 1.35rem auto 0;
+}
+
+.phase-summary summary {
+  cursor: pointer;
+  list-style: none;
+  text-align: right;
+  font-size: clamp(.86rem, 2.8vw, 1rem);
+}
+
+.phase-summary summary::-webkit-details-marker {
+  display: none;
+}
+
+.phase-summary summary::before {
+  content: "▶";
+  display: inline-block;
+  margin-right: .55rem;
+  font-style: normal;
+  font-size: .72em;
+  transform: translateY(-.05em);
+}
+
+.phase-summary[open] summary::before {
+  transform: rotate(90deg) translateX(-.05em);
+}
+
+.phase-summary ol {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: .75rem 0 0;
+  border-top: 1px solid rgba(0, 102, 0, .28);
+}
+
+.phase-summary li {
+  display: grid;
+  grid-template-columns: 2.6rem 1fr;
+  gap: .5rem;
+  padding: .3rem 0;
+  font-size: clamp(.8rem, 2.6vw, .92rem);
+}
+
+.phase-summary a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.phase-summary a:hover {
+  opacity: .55;
+}
+
+.stripe-action {
+  margin: 1.7rem 0 clamp(2.8rem, 7vw, 4.2rem);
+  text-align: center;
+  font-size: clamp(1.05rem, 3.5vw, 1.28rem) !important;
+}
+
+.stripe-action a {
+  display: inline-block;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: .07em;
+}
+
+.support-block {
+  margin-bottom: clamp(3.5rem, 8vw, 5.2rem);
+}
+
+.support-block h1 {
+  font-style: italic;
+}
+
+.donation-legal {
+  margin-top: 2rem !important;
+  font-size: clamp(.76rem, 2.4vw, .88rem) !important;
+  line-height: 1.48 !important;
+}
+
+.donation-legal + .donation-legal {
+  margin-top: -.3rem !important;
+}
+
+.transparency-block {
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 102, 0, .34);
+}
+
+.transparency-block h2 {
+  margin-top: 0;
+  font-size: clamp(.96rem, 3.2vw, 1.08rem);
+  letter-spacing: .01em;
+}
+
+.transparency-links {
+  margin-top: 1.6rem;
+}
+
+.transparency-links .jump {
+  margin: .85rem 0;
+  text-align: left;
+}
+
+@media (max-width: 520px) {
+  .progress-track,
+  .progress-labels,
+  .phase-summary {
+    width: 100%;
+  }
+
+  .progress-current {
+    font-size: .72rem;
+  }
+
+  .progress-track {
+    height: 1.15rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress-fill,
+  .progress-fill::before,
+  .progress-fill::after {
+    animation: none !important;
+  }
+}
+</style>
+
 </head>
 <body>
 
@@ -29,20 +278,23 @@
   <main class="page donation-page">
 
     <section class="project-progress" aria-labelledby="progress-title">
-      <div class="progress-labels">
-        <span id="progress-title">START</span>
-        <span>PERMANENT SPACE</span>
+      <div class="progress-current">
+        <span id="progress-title">CURRENT</span>
+        <span>PHASE 01 · BUILD CASA RÍO</span>
       </div>
 
-      <!-- Visual project progress, not a percentage of money raised.
-           Update --progress manually as the project advances. -->
-      <div class="progress-track" style="--progress: 8%;" aria-label="Casa Río project progress">
+      <div class="progress-track"
+           role="progressbar"
+           aria-label="Casa Río project progress"
+           aria-valuemin="0"
+           aria-valuemax="100"
+           aria-valuenow="5">
         <span class="progress-fill"></span>
       </div>
 
-      <div class="progress-current">
-        <span>CURRENT</span>
-        <span>PHASE 01 · BUILD CASA RÍO</span>
+      <div class="progress-labels">
+        <span>START</span>
+        <span>PERMANENT SPACE</span>
       </div>
 
       <details class="phase-summary">
@@ -58,27 +310,31 @@
       </details>
     </section>
 
-    <section class="donation-copy">
+    <!-- Replace # with the real Stripe Payment Link when it is ready. -->
+    <p class="stripe-action">
+      <a href="#" rel="noopener">CONTRIBUTE THROUGH STRIPE →</a>
+    </p>
+
+    <section class="support-block">
       <h1 class="h1--italic">Support <span class="u">Casa Río</span></h1>
 
-      <p>Casa Río is funded by people who want to help build a permanent cultural space in Madrid. Contributions are made through Stripe. Payment information is processed directly by Stripe; Casa Río does not receive or store your card or bank details.</p>
+      <p>Casa Río is funded by people who want to help build a permanent cultural space in Madrid. Contributions are made through Stripe, an online payment platform designed to handle payments securely. Stripe processes the payment details required for the transaction; Casa Río does not receive or store your full card or bank details.</p>
 
-      <p>Transparency is part of the project. Casa Río publishes what comes in, what is spent and what remains. You can choose whether your contribution appears under your name, an alias or anonymously.</p>
-
-      <!-- Replace # with the Casa Río Stripe Payment Link when ready. -->
-      <p class="stripe-action">
-        <a href="#" rel="noopener">CONTRIBUTE THROUGH STRIPE &rarr;</a>
-      </p>
+      <p>Each contribution goes into the Casa Río fund and helps move the project through its published phases. You can choose whether your contribution is recorded under your name, an alias or anonymously.</p>
 
       <p class="donation-legal">Contributions are voluntary and do not grant ownership of Casa Río, repayment rights or any financial return.</p>
       <p class="donation-legal">Contributions are not currently tax-deductible.</p>
     </section>
 
     <section class="transparency-block">
-      <p class="transparency-kicker">TRANSPARENCY</p>
-      <p>You do not need to contribute before seeing how Casa Río manages its money. The accounts are part of the public record of the project.</p>
-      <div class="jump"><a href="accounts.html">[View the accounts &rarr;]</a></div>
-      <div class="jump"><a href="contributions.html">[How contributions are recorded &rarr;]</a></div>
+      <h2>TRANSPARENCY</h2>
+
+      <p>Every contribution and expense is recorded as the project develops. The accounts show what has come in, what has been spent and the current balance, creating a continuous public record of how the fund is used.</p>
+
+      <div class="transparency-links">
+        <div class="jump"><a href="accounts.html">[View the accounts →]</a></div>
+        <div class="jump"><a href="contributions.html">[How contributions are recorded →]</a></div>
+      </div>
     </section>
 
   </main>
