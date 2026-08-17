@@ -3,41 +3,85 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Donate to Casa Río — Casa Río</title>
-<meta name="description" content="Support the acquisition of a permanent space for culture, community and collective life in Madrid.">
+<title>Support Casa Río — Casa Río</title>
+<meta name="description" content="Contribute to Casa Río and follow the project's progress and public accounts.">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
 <div class="wrap">
-
   <header class="site-head">
     <div class="brand">
       <a class="logo" href="index.html" aria-label="Casa Río">
         <svg viewBox="0 0 300 106" aria-hidden="true">
           <ellipse id="ring-logo" class="logo-ring" cx="150" cy="53" rx="146" ry="47"/>
           <text class="logo-word" x="150" y="72" text-anchor="middle">Casa Río</text>
-          <circle class="orbit-dot" r="4.7"><animateMotion dur="24s" repeatCount="indefinite" path="M 296 53 A 146 47 0 0 1 4 53 A 146 47 0 0 1 296 53 Z"/></circle>
+          <circle class="orbit-dot" r="4.7">
+            <animateMotion dur="24s" repeatCount="indefinite"
+              path="M 296 53 A 146 47 0 0 1 4 53 A 146 47 0 0 1 296 53 Z"/>
+          </circle>
         </svg>
       </a>
       <a class="lang" href="es/donations.html" hreflang="es" lang="es">ESP</a>
     </div>
   </header>
 
-  <main class="page soon">
+  <main class="page donation-page">
 
-    <h1>Donate to Casa Río</h1>
+    <section class="project-progress" aria-labelledby="progress-title">
+      <div class="progress-labels">
+        <span id="progress-title">START</span>
+        <span>PERMANENT SPACE</span>
+      </div>
 
-    <p>This page is being built.</p>
+      <!-- Visual project progress, not a percentage of money raised.
+           Update --progress manually as the project advances. -->
+      <div class="progress-track" style="--progress: 8%;" aria-label="Casa Río project progress">
+        <span class="progress-fill"></span>
+      </div>
 
-    <p>It will explain how to contribute, what each contribution funds and how the money is recorded in the public financial archive.</p>
+      <div class="progress-current">
+        <span>CURRENT</span>
+        <span>PHASE 01 · BUILD CASA RÍO</span>
+      </div>
 
-    <div class="jump"><a href="phases.html">[Where does your donation go? &rarr;]</a></div>
+      <details class="phase-summary">
+        <summary>HOW WE GET THERE</summary>
+        <ol>
+          <li><span>01</span><a href="phases.html">Build Casa Río</a></li>
+          <li><span>02</span><a href="phases.html">Find the space</a></li>
+          <li><span>03</span><a href="phases.html">Acquire and prepare the house</a></li>
+          <li><span>04</span><a href="phases.html">Open Casa Río</a></li>
+          <li><span>05</span><a href="phases.html">Make Casa Río self-sufficient</a></li>
+          <li><span>06</span><a href="phases.html">Begin the next Casa Río</a></li>
+        </ol>
+      </details>
+    </section>
 
-    <div class="jump"><a href="index.html">[Back to Casa Río &rarr;]</a></div>
+    <section class="donation-copy">
+      <h1 class="h1--italic">Support <span class="u">Casa Río</span></h1>
+
+      <p>Casa Río is funded by people who want to help build a permanent cultural space in Madrid. Contributions are made through Stripe. Payment information is processed directly by Stripe; Casa Río does not receive or store your card or bank details.</p>
+
+      <p>Transparency is part of the project. Casa Río publishes what comes in, what is spent and what remains. You can choose whether your contribution appears under your name, an alias or anonymously.</p>
+
+      <!-- Replace # with the Casa Río Stripe Payment Link when ready. -->
+      <p class="stripe-action">
+        <a href="#" rel="noopener">CONTRIBUTE THROUGH STRIPE &rarr;</a>
+      </p>
+
+      <p class="donation-legal">Contributions are voluntary and do not grant ownership of Casa Río, repayment rights or any financial return.</p>
+      <p class="donation-legal">Contributions are not currently tax-deductible.</p>
+    </section>
+
+    <section class="transparency-block">
+      <p class="transparency-kicker">TRANSPARENCY</p>
+      <p>You do not need to contribute before seeing how Casa Río manages its money. The accounts are part of the public record of the project.</p>
+      <div class="jump"><a href="accounts.html">[View the accounts &rarr;]</a></div>
+      <div class="jump"><a href="contributions.html">[How contributions are recorded &rarr;]</a></div>
+    </section>
 
   </main>
-
 </div>
 
 </body>

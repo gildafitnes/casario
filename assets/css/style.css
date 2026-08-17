@@ -410,3 +410,166 @@ a:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .blob { animation: none !important; }
 }
+/* ---------------------------------------------------------
+   Donations page
+   Add this block to assets/css/style.css
+   --------------------------------------------------------- */
+
+.donation-page {
+  font-style: italic;
+}
+
+.project-progress {
+  margin: 0 0 clamp(4rem, 10vw, 6.5rem);
+}
+
+.progress-labels,
+.progress-current {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  font-size: clamp(.62rem, 1.9vw, .74rem);
+  font-style: normal;
+  letter-spacing: .04em;
+}
+
+.progress-labels {
+  margin-bottom: .55rem;
+}
+
+.progress-track {
+  position: relative;
+  width: 100%;
+  height: clamp(2.7rem, 8vw, 3.8rem);
+  border: 1px solid currentColor;
+  overflow: hidden;
+}
+
+.progress-fill {
+  display: block;
+  width: var(--progress, 8%);
+  min-width: 4px;
+  height: 100%;
+  background: currentColor;
+  transition: width .6s ease;
+}
+
+.progress-current {
+  margin-top: .55rem;
+  align-items: flex-start;
+}
+
+.progress-current span:last-child {
+  text-align: right;
+}
+
+.phase-summary {
+  margin-top: 1.7rem;
+  border-top: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+}
+
+.phase-summary summary {
+  padding: .85rem 0;
+  cursor: pointer;
+  list-style: none;
+  font-size: clamp(.72rem, 2.2vw, .84rem);
+  font-style: normal;
+  letter-spacing: .035em;
+}
+
+.phase-summary summary::-webkit-details-marker {
+  display: none;
+}
+
+.phase-summary summary::before {
+  content: "+ ";
+}
+
+.phase-summary[open] summary::before {
+  content: "− ";
+}
+
+.phase-summary ol {
+  list-style: none;
+  margin: 0;
+  padding: .25rem 0 .9rem;
+}
+
+.phase-summary li {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: .75rem;
+  padding: .35rem 0;
+  font-size: clamp(.82rem, 2.7vw, .94rem);
+}
+
+.phase-summary li span {
+  font-style: normal;
+}
+
+.phase-summary a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.phase-summary a:hover {
+  opacity: .55;
+}
+
+.donation-copy {
+  margin-bottom: clamp(4rem, 10vw, 6rem);
+}
+
+.stripe-action {
+  margin: clamp(2.6rem, 7vw, 4rem) 0 2.4rem !important;
+  font-size: clamp(1.15rem, 4.2vw, 1.5rem) !important;
+  line-height: 1.3 !important;
+}
+
+.stripe-action a {
+  display: inline-block;
+  text-decoration: none !important;
+  border-bottom: 1px solid currentColor !important;
+}
+
+.donation-legal {
+  max-width: 38rem;
+  font-size: clamp(.72rem, 2.3vw, .84rem) !important;
+  line-height: 1.45 !important;
+  margin-bottom: .45rem !important;
+}
+
+.transparency-block {
+  padding-top: 1.2rem;
+  border-top: 1px solid currentColor;
+}
+
+.transparency-kicker {
+  margin-bottom: 1.8rem !important;
+  font-size: clamp(.62rem, 1.9vw, .74rem) !important;
+  font-style: normal;
+  letter-spacing: .04em;
+}
+
+.transparency-block .jump {
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+@media (max-width: 420px) {
+  .progress-labels,
+  .progress-current {
+    gap: .75rem;
+  }
+
+  .phase-summary li {
+    grid-template-columns: 2rem 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress-fill {
+    transition: none;
+  }
+}
